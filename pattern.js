@@ -24,6 +24,7 @@ window.pattern = {
     gradient.addColorStop(1, "black");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, ctx.width, ctx.height);
+    console.log(canvas);
     let tex = pixi.Texture.from(canvas);
     let sprite = new pixi.Sprite(tex);
     sprite.position.set(tileSize, tileSize);
