@@ -9,34 +9,25 @@ window.pattern = {
     smoothGraphics, // Function that returns a new SmoothGraphics() from @pixi/graphics-smooth:0.0.30
     random // Function returns pseudorandom number between 0 and 1. Seed changes daily.
   ) => {
-    const container = new pixi.Container();
-
-    const graphics = new pixi.Graphics();
-    graphics.beginFill(0xffffff);
-    // The following region of the DisplayObject will be rendered for the pattern:
-    // {x: tileSize, y: tileSize, width: width * tileSize, height: height * tileSize}
-    // Which is why in the following call, 1 is added both to the width and the height)
-    graphics.drawRect(
-      0,
-      0,
-      (width / 2 + 1) * tileSize,
-      (height + 1) * tileSize
-    );
-    graphics.endFill();
-
-    container.addChild(graphics);
-
-    const sGraphics = smoothGraphics();
-    sGraphics.beginFill(0x808080);
-    sGraphics.drawCircle(
-      (1 + width * random()) * tileSize,
-      (1 + height * random()) * tileSize,
-      3 * tileSize
-    );
-    sGraphics.endFill();
-
-    container.addChild(sGraphics);
-
+    let container = new pixi.Container();
+    let canvas = document.createElement("CANVAS");
+    let ctx = canvas.getContext("2d");
+    ctx.width = width * tileSize;
+    ctx.height = height * tileSize;
+    let midX = (width * tileSize) / 2;
+    let midY = (height * tileSize) / 2;
+    let gradient = ctx.createRadialGradient(midX, midY, 0, midX, midY, Math.min(midX, midY));
+    gradient.addColorStop(0, "black");
+    gradient.addColorStop(0.5, "white");
+    gradient.addColorStop(1, "black");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, ctx.width, ctx.height);
+    let tex = PIXI.Texture.from(canvas);
+    let sprite = new PIXI.Sprite(tex);
+    sprite.position.set(tileSize, tileSize);
+    sprite.width = width * tileSize;
+    sprite.height = height * tileSize;
+    container.addChild(sprite);
     return container;
   },
 };
