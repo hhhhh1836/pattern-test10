@@ -1,6 +1,6 @@
 window.pattern = {
-  name: "Pattern Template",
-  author: "boubou",
+  name: "pattern test",
+  author: "h",
   make: (
     tileSize, // Length of the sides of a single square Tile in pixels.
     width, // Width of the playable Board in Tiles (Small: 9, Normal: 16, Large: 23)
@@ -22,8 +22,8 @@ window.pattern = {
     gradient.addColorStop(1, "black");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, ctx.width, ctx.height);
-    let tex = PIXI.Texture.from(canvas);
-    let sprite = new PIXI.Sprite(tex);
+    let tex = pixi.Texture.from(canvas);
+    let sprite = new pixi.Sprite(tex);
     sprite.position.set(tileSize, tileSize);
     sprite.width = width * tileSize;
     sprite.height = height * tileSize;
