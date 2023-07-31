@@ -13,7 +13,7 @@ window.pattern = {
     const graphics = new pixi.Graphics();
     for (let x = 1; x <= width; x++) {
       for (let y = 1; y <= height; y++) {
-        let bright = Math.floor(256 * Math.sin(Math.PI * (x + 2 * y) / 10));
+        let bright = Math.floor(256 * Math.sin(Math.PI * (x + y) / 10));
         graphics.beginFill(bright * 0x010101);
         graphics.drawRect(x * tileSize, y * tileSize, tileSize, tileSize);
         graphics.endFill();
