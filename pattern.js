@@ -12,7 +12,7 @@ window.pattern = {
     const container = new pixi.Container();
     const graphics = new pixi.Graphics();
     graphics.beginFill(0xffffff);
-    graphics.drawRect(tileSize, tileSize, (width / 2 + 1) * tileSize, (height / 2) + 1 * tileSize);
+    graphics.drawRect(0, 0, (width / 2 + 1) * tileSize, (height / 2) + 1 * tileSize);
     graphics.endFill();
     container.addChild(graphics);
     return container;
