@@ -11,9 +11,14 @@ window.pattern = {
   ) => {
     const container = new pixi.Container();
     const graphics = new pixi.Graphics();
-    graphics.beginFill(0xffffff);
-    graphics.drawRect(0, 0, (width / 2 + 1) * tileSize, (height / 2 + 1) * tileSize);
-    graphics.endFill();
+    for (let x = 1; x <= width; x++) {
+      for (let y = 1; y <= height; y++) {
+        let bright = Math.floor(256 * Math.sin(x + y));
+        graphics.beginFill(bright * 0x010101);
+        graphics.drawRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        graphics.endFill();
+      }
+    }
     container.addChild(graphics);
     return container;
   },
